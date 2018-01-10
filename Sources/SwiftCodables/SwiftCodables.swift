@@ -51,7 +51,53 @@ public enum AuthDatabase {
 		public let deviceGroups: [BiqDeviceGroup]?
 	}
 	public struct BiqUserMeta: Codable {
-		let fullName: String?
+		public let fullName: String?
+		public init(fullName fn: String?) {
+			fullName = fn
+		}
+	}
+}
+
+public enum ObsDatabase {
+	public struct BiqObservation: Codable {
+		public let id: Int
+		public var deviceId: DeviceURN { return bixid }
+		public let bixid: DeviceURN
+		public let obstime: Double
+		public let charging: Int
+		public let firmware: String
+		public let battery: Double
+		public let temp: Double
+		public let light: Int
+		public let humidity: Int
+		public let accelx: Int
+		public let accely: Int
+		public let accelz: Int
+		public init(id i: Int,
+					deviceId d: DeviceURN,
+					obstime: Double,
+					charging: Int,
+					firmware: String,
+					battery: Double,
+					temp: Double,
+					light: Int,
+					humidity: Int,
+					accelx: Int,
+					accely: Int,
+					accelz: Int) {
+			id = i
+			bixid = d
+			self.obstime = obstime
+			self.charging = charging
+			self.firmware = firmware
+			self.battery = battery
+			self.temp = temp
+			self.light = light
+			self.humidity = humidity
+			self.accelx = accelx
+			self.accely = accely
+			self.accelz = accelz
+		}
 	}
 }
 
@@ -74,7 +120,6 @@ public struct BiqDevice: Codable, IdHashable {
 	public let latitude: Double?
 	public let longitude: Double?
 	
-	public let observations: [BiqObservation]?
 	public let groupMemberships: [BiqDeviceGroupMembership]?
 	public let accessPermissions: [BiqDeviceAccessPermission]?
 	
@@ -94,22 +139,8 @@ public struct BiqDevice: Codable, IdHashable {
 		latitude = la
 		longitude = lo
 		
-		observations = nil
 		groupMemberships = nil
 		accessPermissions = nil
-	}
-}
-
-public struct BiqObservation: Codable {
-	public let id: Id
-	public let deviceId: DeviceURN
-	public let date: Date
-	public init(id i: Id,
-				deviceId d: DeviceURN,
-				date da: Date) {
-		id = i
-		deviceId = d
-		date = da
 	}
 }
 
@@ -223,6 +254,15 @@ public enum DeviceAPI {
 		public init(deviceId g: DeviceURN, name n: String? = nil) {
 			deviceId = g
 			name = n
+		}
+	}
+	
+	public struct ListDevicesResponseItem: Codable {
+		public let device: BiqDevice
+		public let lastObservation: ObsDatabase.BiqObservation?
+		public init(device d: BiqDevice, lastObservation l: ObsDatabase.BiqObservation?) {
+			device = d
+			lastObservation = l
 		}
 	}
 }
