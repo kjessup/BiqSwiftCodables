@@ -50,6 +50,9 @@ public enum AuthDatabase {
 		public let detail: String
 		public let deviceGroups: [BiqDeviceGroup]?
 	}
+	public struct BiqUserMeta: Codable {
+		let fullName: String?
+	}
 }
 
 public struct BiqDeviceFlag: OptionSet {
@@ -73,6 +76,8 @@ public struct BiqDevice: Codable, IdHashable {
 	
 	public let observations: [BiqObservation]?
 	public let groupMemberships: [BiqDeviceGroupMembership]?
+	public let accessPermissions: [BiqDeviceAccessPermission]?
+	
 	public var deviceFlags: BiqDeviceFlag {
 		return BiqDeviceFlag(rawValue: flags ?? 0)
 	}
@@ -91,6 +96,7 @@ public struct BiqDevice: Codable, IdHashable {
 		
 		observations = nil
 		groupMemberships = nil
+		accessPermissions = nil
 	}
 }
 
@@ -132,6 +138,19 @@ public struct BiqDeviceGroupMembership: Codable {
 				deviceId d: DeviceURN) {
 		id = i
 		groupId = g
+		deviceId = d
+	}
+}
+
+public struct BiqDeviceAccessPermission: Codable {
+	public let id: Id
+	public let userId: UserId
+	public let deviceId: DeviceURN
+	public init(id i: Id,
+				userId u: UserId,
+				deviceId d: DeviceURN) {
+		id = i
+		userId = u
 		deviceId = d
 	}
 }
