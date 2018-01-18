@@ -196,7 +196,7 @@ public struct HealthCheckResponse: Codable {
 }
 
 public struct EmptyReply: Codable {
-	
+	public init() {}
 }
 
 public enum GroupAPI {
