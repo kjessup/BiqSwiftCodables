@@ -161,26 +161,20 @@ public struct BiqDeviceGroup: Codable, IdHashable {
 }
 
 public struct BiqDeviceGroupMembership: Codable {
-	public let id: Id
 	public let groupId: Id
 	public let deviceId: DeviceURN
-	public init(id i: Id,
-				groupId g: Id,
+	public init(groupId g: Id,
 				deviceId d: DeviceURN) {
-		id = i
 		groupId = g
 		deviceId = d
 	}
 }
 
 public struct BiqDeviceAccessPermission: Codable {
-	public let id: Id
 	public let userId: UserId
 	public let deviceId: DeviceURN
-	public init(id i: Id,
-				userId u: UserId,
+	public init(userId u: UserId,
 				deviceId d: DeviceURN) {
-		id = i
 		userId = u
 		deviceId = d
 	}
@@ -247,7 +241,6 @@ public enum DeviceAPI {
 			deviceId = d
 		}
 	}
-	
 	public struct UpdateRequest: Codable {
 		public let deviceId: DeviceURN
 		public let name: String?
@@ -256,13 +249,25 @@ public enum DeviceAPI {
 			name = n
 		}
 	}
-	
 	public struct ListDevicesResponseItem: Codable {
 		public let device: BiqDevice
 		public let lastObservation: ObsDatabase.BiqObservation?
 		public init(device d: BiqDevice, lastObservation l: ObsDatabase.BiqObservation?) {
 			device = d
 			lastObservation = l
+		}
+	}
+	public struct ObsRequest: Codable {
+		public enum Interval: Int, Codable {
+			case all,
+				live, // 12 hours
+				day, month, year
+		}
+		public let deviceId: DeviceURN
+		public let interval: Interval
+		public init(deviceId d: DeviceURN, interval i: Interval) {
+			deviceId = d
+			interval = i
 		}
 	}
 }
