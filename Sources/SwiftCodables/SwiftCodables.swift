@@ -259,7 +259,9 @@ public enum DeviceAPI {
 	}
 	public struct ObsRequest: Codable {
 		public enum Interval: Int, Codable {
-			case all, live, day, month, year
+			case all,
+				live, // 12 hours
+				day, month, year
 		}
 		public let deviceId: DeviceURN
 		public let interval: Interval
