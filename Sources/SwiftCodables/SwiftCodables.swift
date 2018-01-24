@@ -264,10 +264,10 @@ public enum DeviceAPI {
 				day, month, year
 		}
 		public let deviceId: DeviceURN
-		public let interval: Interval
+		public let interval: Int // fix - enums with associated + codable
 		public init(deviceId d: DeviceURN, interval i: Interval) {
 			deviceId = d
-			interval = i
+			interval = i.rawValue
 		}
 	}
 }
