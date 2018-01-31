@@ -64,6 +64,8 @@ public enum ObsDatabase {
 		public var deviceId: DeviceURN { return bixid }
 		public let bixid: DeviceURN
 		public let obstime: Double
+		// I don't know why they are stored in the db as milliseconds and as a Double
+		public var obsTimeSeconds: Double { return obstime / 1000 }
 		public let charging: Int
 		public let firmware: String
 		public let battery: Double
