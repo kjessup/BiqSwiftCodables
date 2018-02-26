@@ -195,6 +195,22 @@ public struct EmptyReply: Codable {
 	public init() {}
 }
 
+public struct TokenAcquiredResponse: Codable {
+	public let token: String
+	public init(token t: String) {
+		token = t
+	}
+}
+
+public struct RegisterRequest: Codable {
+	public let email: String
+	public let password: String
+	public init(email e: String, password p: String) {
+		email = e
+		password = p
+	}
+}
+
 public enum GroupAPI {
 	public struct CreateRequest: Codable {
 		public let name: String
