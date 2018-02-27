@@ -307,7 +307,6 @@ public enum Observation {
 
 public struct AccountPublicMeta: Codable {
 	public let fullName: String?
-	
 	public init(fullName: String? = nil) {
 		self.fullName = fullName
 	}
@@ -318,6 +317,15 @@ public struct Account: Codable {
 	public let flags: UInt
 	public let createdAt: Int
 	public let meta: AccountPublicMeta?
+	public init(id: UUID,
+				flags: UInt,
+				createdAt: Int,
+				meta: AccountPublicMeta? = nil) {
+		self.id = id
+		self.flags = flags
+		self.createdAt = createdAt
+		self.meta = meta
+	}
 }
 
 public struct Alias: Codable {
@@ -325,8 +333,21 @@ public struct Alias: Codable {
 	public let account: UUID
 	public let priority: Int
 	public let flags: UInt
-	public let privateKey: String?
 	public let publicKey: String?
+	public let privateKey: String?
+	public init(address: String,
+				account: UUID,
+				priority: Int,
+				flags: UInt,
+				publicKey: String?,
+				privateKey: String?) {
+		self.address = address
+		self.account = account
+		self.priority = priority
+		self.flags = flags
+		self.publicKey = publicKey
+		self.privateKey = privateKey
+	}
 }
 
 public struct AliasBrief: Codable {
@@ -334,6 +355,15 @@ public struct AliasBrief: Codable {
 	public let account: UUID
 	public let priority: Int
 	public let flags: UInt
+	public init(address: String,
+				account: UUID,
+				priority: Int,
+				flags: UInt) {
+		self.address = address
+		self.account = account
+		self.priority = priority
+		self.flags = flags
+	}
 }
 
 
