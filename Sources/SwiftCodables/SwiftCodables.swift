@@ -11,8 +11,6 @@ public typealias UserId = String
 public typealias DeviceURN = String
 public typealias Id = UUID
 
-public let deviceURNPrefix = "urn:qbiq:"
-
 public protocol IdHashable: Hashable {
 	associatedtype IdType: Hashable
 	var id: IdType { get }
@@ -27,7 +25,7 @@ extension IdHashable {
 	}
 }
 
-public enum AuthDatabase {
+public enum AuthDatabase { // old auth
 	// we never create these
 	// we never write to these
 	public struct BiqUserSession: Codable {
@@ -305,6 +303,38 @@ public enum Observation {
 	}
 }
 
+// SAuth - Auth 2
+
+public struct AccountPublicMeta: Codable {
+	public let fullName: String?
+	
+	public init(fullName: String? = nil) {
+		self.fullName = fullName
+	}
+}
+
+public struct Account: Codable {
+	public let id: UUID
+	public let flags: UInt
+	public let createdAt: Int
+	public let meta: AccountPublicMeta?
+}
+
+public struct Alias: Codable {
+	public let address: String
+	public let account: UUID
+	public let priority: Int
+	public let flags: UInt
+	public let privateKey: String?
+	public let publicKey: String?
+}
+
+public struct AliasBrief: Codable {
+	public let address: String
+	public let account: UUID
+	public let priority: Int
+	public let flags: UInt
+}
 
 
 
