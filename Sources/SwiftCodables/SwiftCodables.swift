@@ -340,20 +340,20 @@ public struct Alias: Codable {
 	public let account: UUID
 	public let priority: Int
 	public let flags: UInt
-	public let publicKey: String?
-	public let privateKey: String?
+	public let pwSalt: String?
+	public let pwHash: String?
 	public init(address: String,
 				account: UUID,
 				priority: Int,
 				flags: UInt,
-				publicKey: String?,
-				privateKey: String?) {
+				pwSalt: String?,
+				pwHash: String?) {
 		self.address = address
 		self.account = account
 		self.priority = priority
 		self.flags = flags
-		self.publicKey = publicKey
-		self.privateKey = privateKey
+		self.pwSalt = pwSalt
+		self.pwHash = pwHash
 	}
 }
 
