@@ -193,21 +193,28 @@ public struct EmptyReply: Codable {
 	public init() {}
 }
 
-public struct TokenAcquiredResponse: Codable {
-	public let token: String
-	public init(token t: String) {
-		token = t
+public enum AuthAPI {
+	public struct TokenAcquiredResponse: Codable {
+		public let token: String
+		public let account: Account?
+		public init(token: String, account: Account?) {
+			self.token = token
+			self.account = account
+		}
 	}
+
+	public struct RegisterRequest: Codable {
+		public let email: String
+		public let password: String
+		public init(email e: String, password p: String) {
+			email = e
+			password = p
+		}
+	}
+	public typealias LoginRequest = RegisterRequest
 }
 
-public struct RegisterRequest: Codable {
-	public let email: String
-	public let password: String
-	public init(email e: String, password p: String) {
-		email = e
-		password = p
-	}
-}
+public typealias TokenAcquiredResponse = AuthAPI.TokenAcquiredResponse
 
 public enum GroupAPI {
 	public struct CreateRequest: Codable {
