@@ -212,6 +212,13 @@ public enum AuthAPI {
 		}
 	}
 	public typealias LoginRequest = RegisterRequest
+	
+	public struct AddMobileDeviceRequest: Codable {
+		public let deviceId: String
+		public init(deviceId: String) {
+			self.deviceId = deviceId
+		}
+	}
 }
 
 public typealias TokenAcquiredResponse = AuthAPI.TokenAcquiredResponse
@@ -403,8 +410,6 @@ public struct AliasBrief: Codable {
 		self.flags = flags
 	}
 }
-
-
 
 
 
