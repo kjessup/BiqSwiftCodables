@@ -221,7 +221,7 @@ public enum AuthAPI {
 	}
 	
 	public struct PasswordResetRequest: Codable {
-		let address: String
+		public let address: String
 		public init(address: String) {
 			self.address = address
 		}
