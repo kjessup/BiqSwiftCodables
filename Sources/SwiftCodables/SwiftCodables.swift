@@ -315,28 +315,28 @@ public enum Observation {
 public struct TokenClaim: Codable {
 	enum CodingKeys: String, CodingKey {
 		case issuer = "iss", subject = "sub", expiration = "exp",
-		issuedAt = "iat", jwtId = "jti",
+		issuedAt = "iat", accountId = "accountId",
 		oauthProvider = "oauthProvider", oauthAccessToken = "oauthAccessToken"
 	}
 	public let issuer: String?
 	public let subject: String?
 	public let expiration: Int?
 	public let issuedAt: Int?
-	public let jwtId: UUID?
+	public let accountId: UUID?
 	public let oauthProvider: String?
 	public let oauthAccessToken: String?
 	public init(issuer: String? = nil,
 				subject: String? = nil,
 				expiration: Int? = nil,
 				issuedAt: Int? = nil,
-				jwtId: UUID? = nil,
+				accountId: UUID? = nil,
 				oauthProvider: String? = nil,
 				oauthAccessToken: String? = nil) {
 		self.issuer = issuer
 		self.subject = subject
 		self.expiration = expiration
 		self.issuedAt = issuedAt
-		self.jwtId = jwtId
+		self.accountId = accountId
 		self.oauthProvider = oauthProvider
 		self.oauthAccessToken = oauthAccessToken
 	}
