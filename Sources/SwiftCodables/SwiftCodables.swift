@@ -215,8 +215,10 @@ public enum AuthAPI {
 	
 	public struct AddMobileDeviceRequest: Codable {
 		public let deviceId: String
-		public init(deviceId: String) {
+		public let deviceType: String
+		public init(deviceId: String, deviceType: String) {
 			self.deviceId = deviceId
+			self.deviceType = deviceType
 		}
 	}
 	
