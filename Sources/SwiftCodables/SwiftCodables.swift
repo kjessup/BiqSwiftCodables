@@ -230,6 +230,15 @@ public enum AuthAPI {
 			self.deviceId = deviceId
 		}
 	}
+	
+	public struct PasswordResetCompleteRequest: Codable {
+		public let address: String
+		public let authToken: String
+		public init(address: String, authToken: String) {
+			self.address = address
+			self.authToken = authToken
+		}
+	}
 }
 
 public typealias TokenAcquiredResponse = AuthAPI.TokenAcquiredResponse
