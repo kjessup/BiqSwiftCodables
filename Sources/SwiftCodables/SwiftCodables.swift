@@ -219,6 +219,13 @@ public enum AuthAPI {
 			self.deviceId = deviceId
 		}
 	}
+	
+	public struct PasswordResetRequest: Codable {
+		let address: String
+		public init(address: String) {
+			self.address = address
+		}
+	}
 }
 
 public typealias TokenAcquiredResponse = AuthAPI.TokenAcquiredResponse
