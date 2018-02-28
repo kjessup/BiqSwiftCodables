@@ -312,6 +312,37 @@ public enum Observation {
 
 // SAuth - Auth 2
 
+public struct TokenClaim: Codable {
+	enum CodingKeys: String, CodingKey {
+		case issuer = "iss", subject = "sub", expiration = "exp",
+		issuedAt = "iat", jwtId = "jti",
+		oauthProvider = "oauthProvider", oauthAccessToken = "oauthAccessToken"
+	}
+	public let issuer: String?
+	public let subject: String?
+	public let expiration: Int?
+	public let issuedAt: Int?
+	public let jwtId: UUID?
+	public let oauthProvider: String?
+	public let oauthAccessToken: String?
+	public init(issuer: String? = nil,
+				subject: String? = nil,
+				expiration: Int? = nil,
+				issuedAt: Int? = nil,
+				jwtId: UUID? = nil,
+				oauthProvider: String? = nil,
+				oauthAccessToken: String? = nil) {
+		self.issuer = issuer
+		self.subject = subject
+		self.expiration = expiration
+		self.issuedAt = issuedAt
+		self.jwtId = jwtId
+		self.oauthProvider = oauthProvider
+		self.oauthAccessToken = oauthAccessToken
+	}
+	
+}
+
 public struct AccountPublicMeta: Codable {
 	public let fullName: String?
 	public init(fullName: String? = nil) {
