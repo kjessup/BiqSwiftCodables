@@ -224,8 +224,10 @@ public enum AuthAPI {
 	
 	public struct PasswordResetRequest: Codable {
 		public let address: String
-		public init(address: String) {
+		public let deviceId: String?
+		public init(address: String, deviceId: String?) {
 			self.address = address
+			self.deviceId = deviceId
 		}
 	}
 }
