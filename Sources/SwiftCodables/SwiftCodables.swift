@@ -233,9 +233,11 @@ public enum AuthAPI {
 	
 	public struct PasswordResetCompleteRequest: Codable {
 		public let address: String
+		public let password: String
 		public let authToken: String
-		public init(address: String, authToken: String) {
+		public init(address: String, password: String, authToken: String) {
 			self.address = address
+			self.password = password
 			self.authToken = authToken
 		}
 	}
