@@ -7,7 +7,7 @@
 
 import Foundation
 
-public typealias UserId = String
+public typealias UserId = UUID
 public typealias DeviceURN = String
 public typealias Id = UUID
 
@@ -30,7 +30,7 @@ public enum AuthDatabase { // old auth
 	// we never write to these
 	public struct BiqUserSession: Codable {
 		// userid is validated upstream in the handlers
-		public var id: UserId { return userid ?? "" }
+//		public var id: UserId { return userid ?? "" }
 		public let token: String
 		public let userid: UserId?
 		public let created: Int
