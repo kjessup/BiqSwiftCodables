@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  BIQServer
+//  SwiftCodables.swift
+//  Biq
 //
 //  Created by Kyle Jessup on 2017-12-05.
 //
@@ -22,37 +22,6 @@ extension IdHashable {
 	}
 	public static func ==(lhs: Self, rhs: Self) -> Bool {
 		return lhs.id == rhs.id
-	}
-}
-
-public enum AuthDatabase { // old auth
-	// we never create these
-	// we never write to these
-	public struct BiqUserSession: Codable {
-		// userid is validated upstream in the handlers
-//		public var id: UserId { return userid ?? "" }
-		public let token: String
-		public let userid: UserId?
-		public let created: Int
-		public let updated: Int
-		public let idle: Int
-		public let data: String?
-		public let ipaddress: String?
-		public let useragent: String?
-	}
-	public struct BiqUser: Codable, IdHashable {
-		public let id: UserId
-		public let username: String
-		public let email: String
-		public let usertype: String
-		public let detail: String
-		public let deviceGroups: [BiqDeviceGroup]?
-	}
-	public struct BiqUserMeta: Codable {
-		public let fullName: String?
-		public init(fullName fn: String?) {
-			fullName = fn
-		}
 	}
 }
 
@@ -173,10 +142,13 @@ public struct BiqDeviceGroupMembership: Codable {
 public struct BiqDeviceAccessPermission: Codable {
 	public let userId: UserId
 	public let deviceId: DeviceURN
+	public let flags: Int? 
 	public init(userId u: UserId,
-				deviceId d: DeviceURN) {
+				deviceId d: DeviceURN,
+				flags f: Int = 0) {
 		userId = u
 		deviceId = d
+		flags = f
 	}
 }
 
@@ -296,9 +268,17 @@ public enum DeviceAPI {
 	public struct UpdateRequest: Codable {
 		public let deviceId: DeviceURN
 		public let name: String?
-		public init(deviceId g: DeviceURN, name n: String? = nil) {
+		public let flags: Int?
+		public var deviceFlags: BiqDeviceFlag? {
+			if let f = flags {
+				return BiqDeviceFlag(rawValue: f)
+			}
+			return nil
+		}
+		public init(deviceId g: DeviceURN, name n: String? = nil, flags f: BiqDeviceFlag? = nil) {
 			deviceId = g
 			name = n
+			flags = f?.rawValue
 		}
 	}
 	public struct ListDevicesResponseItem: Codable {
