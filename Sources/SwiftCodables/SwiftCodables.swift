@@ -306,8 +306,12 @@ public enum DeviceAPI {
 	
 	public struct UpdateLimitsRequest: Codable {
 		public struct DeviceLimit: Codable {
-			let limitType: BiqDeviceLimitType
-			let limitValue: Double
+			public let limitType: BiqDeviceLimitType
+			public let limitValue: Double?
+			public init(limitType t: BiqDeviceLimitType, limitValue v: Double?) {
+				limitType = t
+				limitValue = v
+			}
 		}
 		public let deviceId: DeviceURN
 		public let limits: [DeviceLimit]
