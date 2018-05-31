@@ -265,6 +265,9 @@ public enum DeviceAPI {
 			deviceId = d
 		}
 	}
+	
+	public typealias ShareRequest = RegisterRequest
+	
 	public struct UpdateRequest: Codable {
 		public let deviceId: DeviceURN
 		public let name: String?
