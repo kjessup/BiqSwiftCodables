@@ -152,6 +152,18 @@ public struct BiqDeviceAccessPermission: Codable {
 	}
 }
 
+public enum BiqDeviceLimitType: Int, Codable {
+	case tempHigh, tempLow
+	case movementLevel
+	case batteryLevel
+}
+
+public struct BiqDeviceLimit: Codable {
+	public let deviceId: DeviceURN
+	public let limitType: BiqDeviceLimitType
+	public let limitValue: Double
+}
+
 // Requests / Responses 
 
 public struct HealthCheckResponse: Codable {
@@ -284,6 +296,22 @@ public enum DeviceAPI {
 			flags = f?.rawValue
 		}
 	}
+	
+	public struct UpdateLimitsRequest: Codable {
+		public struct DeviceLimit: Codable {
+			let limitType: BiqDeviceLimitType
+			let limitValue: Double
+		}
+		public let deviceId: DeviceURN
+		public let limits: [DeviceLimit]
+		public init(deviceId g: DeviceURN, limits l: [DeviceLimit]) {
+			deviceId = g
+			limits = l
+		}
+	}
+	
+	public typealias DeviceLimitsResponse = UpdateLimitsRequest
+	
 	public struct ListDevicesResponseItem: Codable {
 		public let device: BiqDevice
 		public let lastObservation: ObsDatabase.BiqObservation?
