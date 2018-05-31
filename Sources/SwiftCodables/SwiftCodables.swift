@@ -152,7 +152,7 @@ public struct BiqDeviceAccessPermission: Codable {
 	}
 }
 
-public enum BiqDeviceLimitType: Int, Codable {
+public enum BiqDeviceLimitType: UInt8, Codable {
 	case tempHigh, tempLow
 	case movementLevel
 	case batteryLevel
@@ -160,11 +160,11 @@ public enum BiqDeviceLimitType: Int, Codable {
 
 public struct BiqDeviceLimit: Codable {
 	public let deviceId: DeviceURN
-	public let limitType: Int
-	public let limitValue: Double
+	public let limitType: UInt8
+	public let limitValue: Float
 	public var type: BiqDeviceLimitType? { return BiqDeviceLimitType(rawValue: limitType) }
 	
-	public init(deviceId d: DeviceURN, limitType t: BiqDeviceLimitType, limitValue v: Double) {
+	public init(deviceId d: DeviceURN, limitType t: BiqDeviceLimitType, limitValue v: Float) {
 		deviceId = d
 		limitType = t.rawValue
 		limitValue = v
