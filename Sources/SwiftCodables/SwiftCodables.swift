@@ -280,14 +280,16 @@ public enum GroupAPI {
 }
 
 public enum DeviceAPI {
-	public struct RegisterRequest: Codable {
+	public struct GenericDeviceRequest: Codable {
 		public let deviceId: DeviceURN
 		public init(deviceId d: DeviceURN) {
 			deviceId = d
 		}
 	}
 	
-	public typealias ShareRequest = RegisterRequest
+	public typealias RegisterRequest = GenericDeviceRequest
+	public typealias ShareRequest = GenericDeviceRequest
+	public typealias LimitsRequest = GenericDeviceRequest
 	
 	public struct UpdateRequest: Codable {
 		public let deviceId: DeviceURN
