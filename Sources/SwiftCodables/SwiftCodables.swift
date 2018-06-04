@@ -311,8 +311,8 @@ public enum DeviceAPI {
 	public struct UpdateLimitsRequest: Codable {
 		public struct DeviceLimit: Codable {
 			public let limitType: BiqDeviceLimitType
-			public let limitValue: Double?
-			public init(limitType t: BiqDeviceLimitType, limitValue v: Double?) {
+			public let limitValue: Float?
+			public init(limitType t: BiqDeviceLimitType, limitValue v: Float?) {
 				limitType = t
 				limitValue = v
 			}
