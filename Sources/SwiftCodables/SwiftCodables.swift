@@ -159,12 +159,14 @@ public enum BiqDeviceLimitType: UInt8, Codable {
 }
 
 public struct BiqDeviceLimit: Codable {
+	public let userId: UserId
 	public let deviceId: DeviceURN
 	public let limitType: UInt8
 	public let limitValue: Float
 	public var type: BiqDeviceLimitType? { return BiqDeviceLimitType(rawValue: limitType) }
 	
-	public init(deviceId d: DeviceURN, limitType t: BiqDeviceLimitType, limitValue v: Float) {
+	public init(userId u: UserId, deviceId d: DeviceURN, limitType t: BiqDeviceLimitType, limitValue v: Float) {
+		userId = u
 		deviceId = d
 		limitType = t.rawValue
 		limitValue = v
