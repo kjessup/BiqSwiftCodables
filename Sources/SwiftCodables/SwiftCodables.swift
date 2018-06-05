@@ -330,8 +330,10 @@ public enum DeviceAPI {
 	public struct ListDevicesResponseItem: Codable {
 		public let device: BiqDevice
 		public let lastObservation: ObsDatabase.BiqObservation?
-		public init(device d: BiqDevice, lastObservation l: ObsDatabase.BiqObservation?) {
+		public let shareCount: Int?
+		public init(device d: BiqDevice, shareCount s: Int, lastObservation l: ObsDatabase.BiqObservation?) {
 			device = d
+			shareCount = s
 			lastObservation = l
 		}
 	}
