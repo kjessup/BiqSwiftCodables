@@ -308,15 +308,16 @@ public enum DeviceAPI {
 		}
 	}
 	
-	public struct UpdateLimitsRequest: Codable {
-		public struct DeviceLimit: Codable {
-			public let limitType: BiqDeviceLimitType
-			public let limitValue: Float?
-			public init(limitType t: BiqDeviceLimitType, limitValue v: Float?) {
-				limitType = t
-				limitValue = v
-			}
+	public struct DeviceLimit: Codable {
+		public let limitType: BiqDeviceLimitType
+		public let limitValue: Float?
+		public init(limitType t: BiqDeviceLimitType, limitValue v: Float?) {
+			limitType = t
+			limitValue = v
 		}
+	}
+	
+	public struct UpdateLimitsRequest: Codable {
 		public let deviceId: DeviceURN
 		public let limits: [DeviceLimit]
 		public init(deviceId g: DeviceURN, limits l: [DeviceLimit]) {
@@ -331,10 +332,12 @@ public enum DeviceAPI {
 		public let device: BiqDevice
 		public let lastObservation: ObsDatabase.BiqObservation?
 		public let shareCount: Int?
-		public init(device d: BiqDevice, shareCount s: Int, lastObservation l: ObsDatabase.BiqObservation?) {
+		public let limits: [DeviceLimit]?
+		public init(device d: BiqDevice, shareCount s: Int, lastObservation o: ObsDatabase.BiqObservation?, limits l: [DeviceLimit]) {
 			device = d
 			shareCount = s
-			lastObservation = l
+			lastObservation = o
+			limits = l
 		}
 	}
 	public struct ObsRequest: Codable {
