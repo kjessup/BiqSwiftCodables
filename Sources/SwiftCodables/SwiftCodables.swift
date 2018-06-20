@@ -228,11 +228,27 @@ public enum DeviceAPI {
 	public typealias RegisterRequest = GenericDeviceRequest
 	public typealias LimitsRequest = GenericDeviceRequest
 	
+	// request to share someone else's biq
 	public struct ShareRequest: Codable {
 		public let deviceId: DeviceURN
 		public let token: UUID?
 		public init(deviceId d: DeviceURN, token t: UUID? = nil) {
 			deviceId = d
+			token = t
+		}
+	}
+	
+	// request to produce a token which permits others to share biq
+	public struct ShareTokenRequest: Codable {
+		public let deviceId: DeviceURN
+		public init(deviceId d: DeviceURN) {
+			deviceId = d
+		}
+	}
+	
+	public struct ShareTokenResponse: Codable {
+		public let token: UUID
+		public init(token t: UUID) {
 			token = t
 		}
 	}
