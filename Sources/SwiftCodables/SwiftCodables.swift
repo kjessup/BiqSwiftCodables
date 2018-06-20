@@ -226,8 +226,16 @@ public enum DeviceAPI {
 	}
 	
 	public typealias RegisterRequest = GenericDeviceRequest
-	public typealias ShareRequest = GenericDeviceRequest
 	public typealias LimitsRequest = GenericDeviceRequest
+	
+	public struct ShareRequest: Codable {
+		public let deviceId: DeviceURN
+		public let token: UUID?
+		public init(deviceId d: DeviceURN, token t: UUID? = nil) {
+			deviceId = d
+			token = t
+		}
+	}
 	
 	public struct UpdateRequest: Codable {
 		public let deviceId: DeviceURN
