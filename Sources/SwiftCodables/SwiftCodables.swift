@@ -276,9 +276,11 @@ public enum DeviceAPI {
 	public struct DeviceLimit: Codable {
 		public let limitType: BiqDeviceLimitType
 		public let limitValue: Float?
-		public init(limitType t: BiqDeviceLimitType, limitValue v: Float?) {
+		public let limitValueString: String?
+		public init(limitType t: BiqDeviceLimitType, limitValue v: Float?, limitValueString vs: String? = nil) {
 			limitType = t
 			limitValue = v
+			limitValueString = vs
 		}
 	}
 	
