@@ -157,6 +157,8 @@ public enum BiqDeviceLimitType: UInt8, Codable {
 	case movementLevel
 	case batteryLevel
 	case notifications
+	case tempScale
+	case colour
 }
 
 public struct BiqDeviceLimit: Codable {
