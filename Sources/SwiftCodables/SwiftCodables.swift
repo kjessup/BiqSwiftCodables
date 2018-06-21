@@ -166,7 +166,6 @@ public struct BiqDeviceLimit: Codable {
 	public let limitValue: Float
 	public let limitValueString: String?
 	public var type: BiqDeviceLimitType? { return BiqDeviceLimitType(rawValue: limitType) }
-	
 	public init(userId u: UserId, deviceId d: DeviceURN, limitType t: BiqDeviceLimitType, limitValue v: Float = 0.0, limitValueString vs: String? = nil) {
 		userId = u
 		deviceId = d
