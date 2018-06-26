@@ -35,6 +35,7 @@ public enum ObsDatabase {
 		public var obsTimeSeconds: Double { return obstime / 1000 }
 		public let charging: Int
 		public let firmware: String
+		public let wifiFirmware: String?
 		public let battery: Double
 		public let temp: Double
 		public let light: Int
@@ -47,6 +48,7 @@ public enum ObsDatabase {
 					obstime: Double,
 					charging: Int,
 					firmware: String,
+					wifiFirmware: String,
 					battery: Double,
 					temp: Double,
 					light: Int,
@@ -59,6 +61,7 @@ public enum ObsDatabase {
 			self.obstime = obstime
 			self.charging = charging
 			self.firmware = firmware
+			self.wifiFirmware = wifiFirmware
 			self.battery = battery
 			self.temp = temp
 			self.light = light
