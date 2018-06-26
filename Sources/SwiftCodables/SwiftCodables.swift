@@ -183,10 +183,12 @@ public struct BiqDeviceLimit: Codable {
 
 public struct BiqDeviceFirmware: Codable {
 	public let version: String
+	public let type: Int
 	public let supersedes: String?
 	public let obsoletedBy: String?
-	public init(version: String, supersedes: String?, obsoletedBy: String?) {
+	public init(version: String, type: Int, supersedes: String?, obsoletedBy: String?) {
 		self.version = version
+		self.type = type
 		self.supersedes = supersedes
 		self.obsoletedBy = obsoletedBy
 	}
