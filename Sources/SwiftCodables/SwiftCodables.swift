@@ -152,6 +152,10 @@ public struct BiqDeviceAccessPermission: Codable {
 	}
 }
 
+public enum TemperatureScale: Int {
+	case celsius, fahrenheit
+}
+
 public enum BiqDeviceLimitType: UInt8, Codable {
 	case tempHigh, tempLow
 	case movementLevel
@@ -177,6 +181,16 @@ public struct BiqDeviceLimit: Codable {
 	}
 }
 
+public struct BiqDeviceFirmware: Codable {
+	public let version: String
+	public let supersedes: String?
+	public let obsoletedBy: String?
+	public init(version: String, supersedes: String?, obsoletedBy: String?) {
+		self.version = version
+		self.supersedes = supersedes
+		self.obsoletedBy = obsoletedBy
+	}
+}
 // Requests / Responses 
 
 public enum GroupAPI {
