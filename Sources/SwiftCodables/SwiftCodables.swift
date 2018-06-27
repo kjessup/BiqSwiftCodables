@@ -184,6 +184,20 @@ public struct BiqDeviceLimit: Codable {
 	}
 }
 
+public struct BiqDevicePushLimit: Codable {
+	public let deviceId: DeviceURN
+	public let limitType: UInt8
+	public let limitValue: Float
+	public let limitValueString: String?
+	public var type: BiqDeviceLimitType? { return BiqDeviceLimitType(rawValue: limitType) }
+	public init(deviceId d: DeviceURN, limitType t: BiqDeviceLimitType, limitValue v: Float = 0.0, limitValueString vs: String? = nil) {
+		deviceId = d
+		limitType = t.rawValue
+		limitValue = v
+		limitValueString = vs
+	}
+}
+
 public struct BiqDeviceFirmware: Codable {
 	public let version: String
 	public let type: Int
