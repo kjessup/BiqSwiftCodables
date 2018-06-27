@@ -160,12 +160,18 @@ public enum TemperatureScale: Int {
 }
 
 public enum BiqDeviceLimitType: UInt8, Codable {
-	case tempHigh, tempLow
+	case tempHigh,
+		 tempLow
 	case movementLevel
 	case batteryLevel
 	case notifications
 	case tempScale
 	case colour
+	case interval
+	case reportFormat
+	case reportBufferCapacity
+	case lightLevel
+	case humidityLevel
 }
 
 public struct BiqDeviceLimit: Codable {
