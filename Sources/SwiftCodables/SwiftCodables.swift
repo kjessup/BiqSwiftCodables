@@ -375,3 +375,63 @@ public enum Observation {
 		
 	}
 }
+
+// ••temperature••
+public extension BinaryFloatingPoint {
+	var oneDecimalPlace: String {
+		return String(format: "%.1f", Float(Float(Int(self * 10))/10))
+	}
+	var fahrenheit2Celsius: Self {
+		return (self - 32) * 5 / 9
+	}
+	var celsius2Fahrenheit: Self {
+		return self * 9 / 5 + 32
+	}
+	var nearestFive: Self {
+		return (self * 2).rounded() / 2
+	}
+}
+
+public extension TemperatureScale {
+	func format<T: BinaryFloatingPoint>(_ temp: T) -> String {
+		switch self {
+		case .celsius:
+			return "\(temp.oneDecimalPlace)ºC"
+		case .fahrenheit:
+			return "\(temp.oneDecimalPlace)ºF"
+		}
+	}
+	func formatC<T: BinaryFloatingPoint>(_ temp: T) -> String {
+		return format(fromC(temp))
+	}
+	func asC<T: BinaryFloatingPoint>(_ d: T) -> T {
+		guard !d.isNaN else {
+			return d
+		}
+		switch self {
+		case .celsius:
+			return d
+		case .fahrenheit:
+			return d.fahrenheit2Celsius
+		}
+	}
+	func fromC<T: BinaryFloatingPoint>(_ d: T) -> T {
+		guard !d.isNaN else {
+			return d
+		}
+		switch self {
+		case .celsius:
+			return d
+		case .fahrenheit:
+			return d.celsius2Fahrenheit
+		}
+	}
+	var suffix: String {
+		switch self {
+		case .celsius:
+			return "C"
+		case .fahrenheit:
+			return "F"
+		}
+	}
+}
