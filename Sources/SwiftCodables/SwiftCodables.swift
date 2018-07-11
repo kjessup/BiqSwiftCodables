@@ -159,19 +159,27 @@ public enum TemperatureScale: Int {
 	case celsius, fahrenheit
 }
 
-public enum BiqDeviceLimitType: UInt8, Codable {
-	case tempHigh,
-		 tempLow
-	case movementLevel
-	case batteryLevel
-	case notifications
-	case tempScale
-	case colour
-	case interval
-	case reportFormat
-	case reportBufferCapacity
-	case lightLevel
-	case humidityLevel
+public struct BiqDeviceLimitType: Codable {
+	public let rawValue: UInt8
+	public init(rawValue: UInt8) {
+		self.rawValue = rawValue
+	}
+	public static let tempHigh = 		BiqDeviceLimitType(rawValue: 0)
+	public static let tempLow = 		BiqDeviceLimitType(rawValue: 1)
+	public static let movementLevel = 	BiqDeviceLimitType(rawValue: 2)
+	public static let batteryLevel = 	BiqDeviceLimitType(rawValue: 3)
+	public static let notifications = 	BiqDeviceLimitType(rawValue: 4)
+	public static let tempScale = 		BiqDeviceLimitType(rawValue: 5)
+	public static let colour = 		BiqDeviceLimitType(rawValue: 6)
+	public static let interval = 		BiqDeviceLimitType(rawValue: 7)
+	public static let reportFormat = 	BiqDeviceLimitType(rawValue: 8)
+	public static let reportBufferCapacity = BiqDeviceLimitType(rawValue: 9)
+	public static let lightLevel = 	BiqDeviceLimitType(rawValue: 10)
+	public static let humidityLevel = 	BiqDeviceLimitType(rawValue: 11)
+	
+	public static func ==(lhs: BiqDeviceLimitType, rhs: BiqDeviceLimitType) -> Bool {
+		return lhs.rawValue == rhs.rawValue
+	}
 }
 
 public struct BiqDeviceLimit: Codable {
