@@ -164,6 +164,14 @@ public struct BiqDeviceLimitType: Codable {
 	public init(rawValue: UInt8) {
 		self.rawValue = rawValue
 	}
+	public init(from decoder: Decoder) throws {
+		let d = try decoder.singleValueContainer()
+		self.init(rawValue: try d.decode(UInt8.self))
+	}
+	public func encode(to encoder: Encoder) throws {
+		var c = encoder.singleValueContainer()
+		try c.encode(rawValue)
+	}
 	public static let tempHigh = 		BiqDeviceLimitType(rawValue: 0)
 	public static let tempLow = 		BiqDeviceLimitType(rawValue: 1)
 	public static let movementLevel = 	BiqDeviceLimitType(rawValue: 2)
