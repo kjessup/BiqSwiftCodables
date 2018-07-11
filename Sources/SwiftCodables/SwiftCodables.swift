@@ -180,6 +180,9 @@ public struct BiqDeviceLimitType: Codable {
 	public static func ==(lhs: BiqDeviceLimitType, rhs: BiqDeviceLimitType) -> Bool {
 		return lhs.rawValue == rhs.rawValue
 	}
+	public static func !=(lhs: BiqDeviceLimitType, rhs: BiqDeviceLimitType) -> Bool {
+		return lhs.rawValue != rhs.rawValue
+	}
 }
 
 public struct BiqDeviceLimit: Codable {
